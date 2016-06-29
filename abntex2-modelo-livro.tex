@@ -213,7 +213,6 @@
 \vspace{2.5cm}
 \huge 
 {\raggedleft
-\includegraphics[scale=0.9]{abntex2-modelo-img-marca.pdf}\\[1cm]
 \textit{\textcolor{blue}{\imprimirtitulo}}\\[1cm]
 }
 \centering 
@@ -238,7 +237,6 @@
 \vspace{2.5cm}
 \huge 
 {\raggedleft
-\includegraphics[scale=0.9]{abntex2-modelo-img-marca.pdf}\\[1cm]
 \textit{\textcolor{blue}{\imprimirtitulo}}\\[1cm]
 }
 \centering 
@@ -384,42 +382,274 @@ Este documento deve ser utilizado como complemento dos manuais do \abnTeX\
 
   
 % ------------------------------------------------------------
-\chapter{Um exemplo de capítulo}
+\chapter{Introdução à Segurança}
 % ------------------------------------------------------------
 
-\lipsum[1-10]
+Antes do uso generalizado de equipamentos de processamento de dados, a segurança da informação considerada valiosa para uma organização era fornecida principalmente por meios físicos de administrativos. Um exemplo do primeiro é o uso de robustos armários para arquivos com uma fechadura de segredo para armazenar documentos confidenciais. Um exemplo do último são os procedimentos de seleção de pessoal usados durante o processo de contratação.
+
+Com a introdução do computador, tornou-se evidente a necessidade de ferramentas automatizadas para proteger arquivos e outras informações armazenadas no computador. Suponho que poderíamos trancar o computador que guarda a informação atrás de uma porta com cadeado e fazer seleções para selecionar quem teria acesso, mas informações normalmente precisam ser disseminadas em sistemas de informação. Está na definição. “Um sistema de informação é um conjunto de recursos de hardware, software, redes e dados que serve para disseminar informação útil em uma organização.”
+
+Temos, portanto, dois problemas distintos: proteger a informação que se encontra em um dispositivo que faz parte de um sistema de informação e proteger a informação no momento em que ela trafega entre dois dispositivos diferentes. Para essas duas tarefas, temos duas áreas de conhecimento que se relacionam e se confundem: a segurança de computador e a segurança de rede. Essas duas áreas formam a maior parte do que veremos na disciplina.
+
+A segurança de cada ativo de informação de uma organização costuma ser delineada com a definição de três componentes: uma política de segurança, um modelo de ameaça e um mecanismo.
+
+A política de segurança de um ativo procura determinar como tal ativo ou recurso será acessado de forma legítima. Por exemplo, em um serviço de e-mail, a política de acesso em geral utiliza um sistema de controle de acesso que exige o fornecimento de um nome de usuário e sua senha associada para que o usuário possa ter acesso às mensagens de sua caixa de entrada. Assim, neste exemplo, a política de segurança do serviço tem base em um sistema que necessariamente só permitirá o acesso aos dados de um usuário, caso receba como entrada um conjunto de informações composto pelo login do usuário e sua senha. Caso as duas informações fornecidas não coincidam com aquelas armazenadas no banco de dados do serviço de e-mails, o acesso não é concedido. Ter um nome de usuário válido e sua senha associada é o suficiente e necessário para que um usuário do serviço tenha acesso a ele de forma legítima.
+
+O modelo de ameaça procura definir quais são as habilidades e/ou possibilidades que uma possível ameaça - algo que pode desejar quebrar a segurança de um sistema, isto é, acessar dados ou outros recursos de forma que não seja condizente com sua política de segurança - tem. Se o nosso adversário - a ameaça da qual desejamos nos proteger - for onipotente, será muito difícil se proteger dela. É necessário, portanto, que tentemos delimitar quais são os recursos que as ameaças ao sistema possuem - e quais recursos elas necessariamente não possuem. Por exemplo, no mesmo exemplo de um serviço de e-mails, é razoável presumir que um adversário não possui nosso nome de usuário e senha, não tem acesso ao nosso computador, às nossas chaves e ao nosso telefone. Caso contrário, seria excepcionalmente difícil se proteger de uma ameaça do tipo. O modelo de ameaça deve ser o mais abrangente possível - isto é, deve tentar prever o maior conjunto possível de recursos e técnicas que têm algum potencial razoável de causar uma quebra na segurança do sistema, pois nunca se sabe o que um adversário pode tentar para conseguir acesso indevido aos recursos do sistema.
+
+Mecanismos de segurança são quaisquer técnicas representadas em recursos de hardware ou software que buscam, com base no modelo de ameaça definido, assegurar que a política de segurança de um sistema seja respeitada. Por exemplo, mais uma vez utilizando o exemplo do sistema de e-mails, o mecanismo de segurança que assegura que um adversário não terá acesso aos dados de um usuário, com base na informação fornecida no modelo de ameaça - que o adversário não tem acesso ao nome de usuário e senha de um usuário específico -, é o mecanismo de controle que só libera o acesso caso receba um par válido de nome de usuário e senha associada.
+
+A diferença entre a política e o mecanismo nesse caso é sutil, mas é possível esclarecê-la: a política define o que é suficiente e necessário para que um usuário legítimo tenha acesso aos recursos, enquanto o mecanismo de segurança define como essa condição é garantida na prática. Em outras palavras, enquanto a política define que o acesso aos dados - a caixa de e-mails do usuário - só deve acontecer caso o sistema receba nome de usuário e senha válidos, o mecanismo define como essa condição é assegurada na prática.
+
+\section{Exemplos}
+
+Quando a segurança de um sistema é quebrada, a falha pode se encontrar em qualquer um dos três componentes. Algumas falhas de segurança reais se tornaram notórias no passado próximo. 
+	
+Como exemplo de uma falha na política de segurança de um sistema, é possível citar a célebre quebra de sigilo do e-mail de Sarah Palin, candidata à vice-presidência dos Estados Unidos nas eleições de 2008. Sarah Palin usava uma conta de e-mail do Yahoo! que oferecia, como mecanismo de recuperação de acesso às mensagens caso o usuário esquecesse sua senha, a possibilidade de provar sua identidade respondendo uma pergunta de segurança como ‘Qual é o nome de solteira da sua mãe?’ ou ‘Qual era o nome da escola onde você cursou a 5ª série?’. Infelizmente, esse tipo de informação se torna muito fácil de obter quando se trata de uma pessoa que tem vida muito publicizada, como, por exemplo, um candidato à presidência do país mais poderoso do mundo. Usuários mal intencionados exploraram essa brecha na segurança do serviço de e-mails do Yahoo! na época da campanha presidencial e tiveram acesso a muitos dados pessoais de Palin. Neste caso, a falha de segurança estava na política do sistema: ao invés de fornecer acesso apenas quando o sistema recebia nome de usuário e senha válidos, a política permitia o acesso também com o fornecimento da resposta a uma pergunta, o que a enfraqueceu. Presumivelmente, também é possível racionalizar que o problema se encontrava no modelo de ameaça: o mecanismo havia sido projetado na presunção incorreta de que um adversário não teria acesso a tal tipo de informação sobre a vida pessoal de um usuário, o que, no caso de uma celebridade, não é seguro presumir. 
+
+Em outros casos, vários sistemas que têm políticas, modelos de ameaça e mecanismos absolutamente razoáveis e bem projetados se tornam vulneráveis a ataques de ameaças quando interagem entre si. Um exemplo que, apesar de não envolver uma celebridade, fez bastante barulho e se tornou um caso interessante de falha de segurança foi o acontecido com Matt Honan, escritor da revista americana Wired Magazine. 
+
+A principal conta de e-mail de Honan era do Google, um endereço com terminação gmail.com. O Gmail solicitou, para fins de recuperação de senha, que ele cadastrasse um e-mail secundário para onde seria enviado um código de reativação caso ele esquecesse sua senha. Honan cadastrou, como seu e-mail secundário, um endereço de e-mail da Apple. Um adversário mal intencionado, buscando acesso à conta de Honan no Gmail, iniciou o processo de recuperação de senha perdida. O Gmail, executando seu procedimento padrão para esse tipo de situação, avisou-o que o código de ativação havia sido enviado para o e-mail secundário. O adversário foi, então, ao sistema da Apple, onde fez a mesma coisa que havia feito no Gmail - iniciou o processo de recuperação de senha perdida. O processo do e-mail da Apple, porém, usava uma estratégia de identificação diferente: ao invés de enviar um código para um e-mail secundário, ele pedia que o usuário se identificasse fornecendo os quatro últimos dígitos de seu cartão de crédito cadastrado na conta do iTunes. Naturalmente, o adversário não tinha essa informação extremamente pessoal. O adversário tinha, porém, uma outra informação que permitiu que ele avançasse um pouco mais: ele sabia que Honan era um usuário da Amazon. A Amazon, muito interessada em vender seus produtos, tem um sistema de cadastros razoavelmente sofisticado. Ela permite, por exemplo, que você compre um produto como outra pessoa, sabendo apenas seu e-mail cadastrado, mas sem precisar fazer login no sistema. O sistema não permite, claro, que você utilize os cartões de crédito cadastrados no sistema caso você não se autentique - isso seria absurdamente inseguro e risível -, mas permite que você adicione um novo cartão para fazer uma compra, mesmo não estando autenticado. Não haveria problema algum, certo? O adversário faria a compra em seu próprio cartão e não haveria prejuízo algum para um usuário legítimo. A brecha explorada pelo adversário no caso de Honan foi a seguinte: a Amazon, em seu procedimento de recuperar senhas perdidas, solicita que o usuário informe o número de um de seus cartões cadastrados - inclusive um que tenha sido adicionado sem que o usuário tenha se autenticado. Dessa forma, o adversário adicionou um de seus cartões de crédito à conta de Honan na Amazon e conseguiu ter acesso a sua conta ao iniciar o processo de recuperação de senha e informar o número deste cartão. A partir daí, ficou fácil: ele teve acesso a todos os números dos cartões de crédito que Honan havia cadastrado em sua conta da Amazon, e um desses era o mesmo que estava senod utilizado em sua conta da Apple. Com essa informação, ele conseguiu acesso ao e-mail da Apple, onde já estava o código para criar uma nova senha do Gmail. Exemplos de erros na definição do modelo de ameaça são comuns, pois é muito fácil negligenciar algum detalhe. Modelos de ameaça que fazem suposições sobre as ações dos usuários legítimos, por exemplo, tendem a ser fracos. Não é incomum que usuários leigos comprometam a segurança de um sistema ao utilizarem senhas fracas, anotarem suas senhas em papéis, não renovarem suas senhas com frequência ou não travarem as telas de seus computadores quando vão ao banheiro. 
+
+Outros modelos de ameaça se tornam inseguros com o tempo. Por exemplo, o algoritmo de criptografia Kerberos, criado na década de 1980 no MIT, utilizava uma chave de criptografia de tamanho 56. Levando em consideração o poder computacional médio das máquinas da época, era seguro supor que ninguém conseguiria descobrir a chave usada para criptografar um dado sensível ao tentar todas as chaves possíveis - afinal, havia 2 elevado a 56 chaves possíveis. Hoje em dia, porém, qualquer máquina consegue testar 2 elevado a 56 possibilidades de chave rapidamente, tornando o algoritmo praticamente inútil. O modelo de ameaça se baseou em uma suposição que, na ocasião de sua definição, era boa, mas que, com o passar do tempo, tornou-se ruim. Um exemplo de modelo de ameaça fraco é o utilizado atualmente por navegadores web em situações que exigem certificações para assegurar que um ambiente é seguro. É o que acontece, por exemplo, quando acessamos serviços de e-commerce como o Submarino ou a Americanas e chegamos à página de inserir as informações de nossos cartões de crédito. Nessas situações, o site de e-commerce envia aos nossos navegadores um certificado que indica que aquele site é confiável, e esses certificados são emitidos por entidades que são conhecidas como Autoridades de Certificação ou ACs. Ao observar que o certificado foi emitido por uma AC real, o navegador define aquele ambiente como seguro. Existem, porém centenas ou milhares de ACs - talvez não seja interessante supor que todas elas se mantêm perfeitamente seguras o tempo todo. Neste caso, toda a nossa segurança recai sobre a nossa confiança em uma suposição que faz parte de nosso modelo de ameaça: como o site nos forneceu um certificado emitido por uma Autoridade de Certificação legítima, sinto-me seguro para informar ao usuário que este é um ambiente seguro. Essa suposição pode não ser necessariamente verdadeira em um determinado momento. 
+
+Os mecanismos de segurança são os maiores causadores de falhas - eles são a parte mais complicada da história, então há muitas oportunidades para erro. Um caso razoavelmente recente de falha de segurança em um mecanismo aconteceu em um dos serviços da Apple. Em seus vários serviços, a Apple utiliza um sistema de número máximo de tentativas de autenticação: caso você erre sua senha X vezes, o sistema bloqueia novas tentativas por um período predeterminado de tempo. Isso impede que alguém tente quebrar a segurança para acessar os dados de algum usuário ao tentar todas as senhas possíveis. É um mecanismo utilizado por muitos serviços populares na Internet. Infelizmente, porém, ao lançar o serviço iCloud, a Apple não reforçou o uso deste mecanismo naquela interface - isto é, o mecanismo de segurança era utilizado no iTunes, na Apple Store, etc, mas não estava funcional na interface do iCloud, onde os usuários utilizavam a mesma senha dos outros serviços. Naturalmente, após perceber que era possível testar inúmeras senhas sem bloqueio, usuários mal intencionados aproveitaram-se da interface do iCloud para usar sistemas automatizados que faziam milhares de tentativas de autenticação por segundo e conseguiram descobrir a senha de milhares de usuários, evidenciando a gigantesca falha de segurança. 
+
+Uma falha risível ocorreu com a empresa Citibank de cartões de crédito. A empresa forneceu, ao iniciar suas atividades de internet banking, a possibilidade de acessar faturas através de seu site com o uso de um sistema de autenticação razoavelmente padrão que exigia login e senha. O sistema falhava, porém, em um aspecto muito simples: a URL que aparecia no navegador de quem acessava o serviço continha um número que identificava a fatura sendo visualizada, mas não conferia se aquele número correspondia aos nome de usuário e senha que haviam sido informaods no momento da autenticação. Para ter acesso livre às informações de quaisquer outros clientes, era só modificar o número após fazer uma autenticação legítima. 
+
+Uma falha bem menos gritante que ocorreu com o aplicativo de BitCoin para a plataforma Android deixa bem claro que devemos ter muita atenção a todos os detlahes que dizem respeito à segurança de um sistema. Ao criar uma conta para passar a utilizar BitCoin usando o aplicativo Android, seu saldo era associado a uma chave privada criada em cada dispositivo diferente - se alguém tinha sua chave, poderia utilizar seus BitCoins. A chave fazia parte, porém, do funcionamento interno do aplicativo, e o usuário não tinha acesso a ela. Era importante, portante, que essas chaves tivessem um nível alto de aleatoriedade para que não pudessem ser adivinhadas. O aplicativo gerava tais chaves utilizando uma API Java chamada SecureRandom - comumente usada para gerar números pseudoaleatórios. A API tinha porém, um bug: ocasionalmente não iniciava seu gerador de números aleatórios de maneira válida. A consequência do bug foi que vários usuários acabaram recebendo a mesma chave ao criar suas contas. Ao explorar essa vulnerabilidade, usuários mal intencionados conseguiram acesso ao saldo - e, consequentemente, aos BitCoins - de milhares de usuários.
+
+\section{E agora, quem vai nos defender?}
+
+A relação entre política, modelo de ameaça e mecanismo de segurança se baseia totalmente na veracidade e na completude do modelo de ameaça. Nossa confiança em um sistema que controla o acesso a seus recursos por meio de um procedimento de login só pode existir se podemos presumir com um grau razoável de certeza que o nosso adversário não tem acesso aos dados necessários para atingir um resultado positivo nesse procedimento. Como o mecanismo foi projetado com base nessa suposição, caso ela seja ou se torne falsa, a política de segurança definida cai por terra, pois o mecanismo que garantia sua manutenção se baseia em um modelo de ameaça incorreto e/ou incompleto. Se isso acontece, para que a segurança do sistema seja restaurada, o modelo de ameaça deve ser reformulado, e tanto a política de segurança quanto o mecanismo que a assegura devem ser redefinidos de acordo. Somente quando o modelo de ameaça está correto, o mecanismo não tem falhas e a política é satisfeito, podemos afirmar que um sistema está seguro. 
+
+Esses requisitos não soam especialmente complicados, mas sistemas de computadores têm sua segurança quebrada o tempo todo. O problema com o qual a área de segurança computacional lida é excepcionalmente difícil pois se baseia em um objetivo negativo: garantir que a política de segurança seja seguida independentemente do que o adversário possa fazer. 	Imaginemos que nosso objetivo é que um conjunto de usuários tenha acesso a um determinado recurso de um sistema. Para atingir um nível de certeza bastante alto em relação a nosso objetivo, seria necessário e suficiente fazer um teste individual utilizando cada dispositivo que desejamos que tenha acesso. Caso constatemos que é possível acessar o recurso utilizando cada dispositivo ao qual desejamos fornecer acesso legítimo, o objetivo foi atingido - esse é um objetivo positivo. Se nosso objetivo, porém, for que um conjunto de usuários não tenha acesso a um determinado recurso, é excepcionalmente difícil projetarmos testes que esgotem todas as possibilidades de tentativas de acesso indevido, pois um adversário pode, potencialmente, tentar mil coisas diferentes para conseguir acesso. É impossível, portanto, projetarmos um modelo de ameaça que forneça 100\% de segurança - simplesmente não temos como prever absolutamente todas as possibilidades que um adversário pode ter para quebrar a segurança, pois adversários podem sempre pensar em novas formas de testar a segurança. 
+
+Desta forma, podemos afirmar categoricamente: não existe nenhum sistema com segurança inquebrável. Todos os sistemas quebram. Se é assim, por que nos damos ao trabalho de estudar segurança computacional ou desenvolver mecanismos de segurança? A verdade é que, apesar de jamais termos como desenvolver um sistema com 100\% de segurança garantida, aplicações que visam a segurança computacional tornam os sistemas muito mais poderosos, enquanto, ao mesmo tempo, diminuem riscos para os recursos. É devido a avanços na área de segurança computacional que podemos, por exemplo, executar sistemas realmente bastante poderosos a partir de nossos navedores - como jogos com gráficos avançados a partir do Facebook. Mecanismos de segurança particularmente inteligentes tornam possível que uma aplicação desenvolvida e administrada por terceiros seja executada de forma nativa a partir do seu navegador, utilizando toda a capacidade de processamento de seu dispositivo, sem que você corra riscos de perda ou divulgação de seus dados. Bons mecanismos permitem a criação de novos sistemas que não eram possíveis antes.
 
 % ------------------------------------------------------------
-\chapter{Exemplos de imagens}
+\chapter{Um Sistema Seguro}
 % ------------------------------------------------------------
 
-\lipsum[1]
+Para que um sistema seja considerado seguro, ele deve apresentar as características de segurança que sejam condizentes com seu escopo e seu propósito. As características de segurança mais comuns são confidencialidade, integridade, disponibilidade, autenticidade e irretratabilidade. As características são oferecidas pelos mecanismos e podem ser comprometidas por ataques de ameaças.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.6\linewidth]{abntex2-modelo-livro-pintassilgo}
-\caption{Pintassilgo (\textit{Carduelis magellanicus}).}
-\label{fig:pintassilgo}
-\end{figure}
+Como vimos anteriormente, a política de segurança de um sistema define os requisitos para que sua utilização ocorra de forma considerada segura,  e é assegurada por mecanismos de segurança que são projetados com base em um conjunto de suposições sobre as possíveis ameaças à segurança chamado de modelo de ameaça.
 
-\lipsum[6]
+Em geral, a política de segurança é composta por afirmações relacionadas às características de segurança desejadas para o sistema. O modelo de ameaça deve levar en consideração todas as possíveis habilidades de adversários que ameacem quaisquer das características definidas na política e um conjunto de mecanismos deve ser projetado e implantado para defendê-las de quaisquer ataques.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.6\linewidth]{abntex2-modelo-livro-saira-amarela}
-\caption{Saíra-amarela (\textit{Tangara cayana}).}
-\label{fig:saira-amarela}
-\end{figure}
+Dizemos que um ataque à segurança acontece quando um adversário tem alguma ação que tenha como objetivo causar uma quebra na segurança do sistema, desrespeitando sua política vigente. Caso a técnica utilizada pelo adversário tenha sido prevista no modelo de ameaça e um mecanismo correspondente tenha sido implantado, o ataque será evitado e a quebra não acontecerá. Caso contrário, o adversário deve ter sucesso e a política de segurança do sistema será desrespeitada – haverá uma quebra de segurança.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.6\linewidth]{abntex2-modelo-livro-bandeirinha}
-\caption{Bandeirinha (\textit{Chlorophonia cyanea}).}
-\label{fig:bandeirinha}
-\end{figure}
+\section{A Tríade CID}
 
+Confidencialidade, integridade e disponibilidade, também conhecidas como a tríade CID, são considerados os três componentes mais cruciais da segurança de um sistema. Neste contexto, a confidencialidade consiste na proteção de dados contra divulgação não autorizada, integridade é a garantia que uma informação é confiável, precisa e não sofreu nenhuma modificação indevida, e a disponibilidade é a característica do sistema     que se mantém acessível e utilizável sob demanda por entidades autorizadas de acordo com especificações de desempenho.
 
-\lipsum[7]
+A confidencialidade se refere a limitar o acesso e a divulgação de informações a usuários autorizados e evitar o acesso e divulgação por parte de usuários não-autorizados. Este conceito pode ser facilmente confundido com a ideia de autenticidade e controle de acesso que será discutida em breve, mas a diferença entre os dois conceitos será explicitada quando necessário. A confidencialidade se relaciona ao conceito mais amplo de privacidade de dados -- a ideia de limitar o acesso às informações pessoais de um indivíduo.
+
+A integridade se refere à manutenção e à garantia da precisão e da consistência dos dados durante seu ciclo de vida e é um aspecto crítico do projeto, implementação e uso de qualquer sistema que armazena, processa, busca ou envia dados. Assim, a integridade procura garantir que quaisquer dados recebidos ou armazenados estão exatamente como foram enviados ou salvos por uma entidade autorizada -- isto é, não foram modificados indevidamente. O objetivo geral de qualquer técnica de integridade de dados é o mesmo: assegurar que dados são armazenados exatamente na forma desejada e, em uma situação futura de acesso a tais dados, que eles continuem na mesma forma em que se encontravam quando foram originalmente armazenados. Em resumo, a integridade de dados procura evitar que ocorram modificações acidentais a qualquer informação. A integridade de dados não deve ser confundida com a segurança de dados, que consiste na proteção deles de usuários não-autorizados.
+
+A disponibilidade é a propriedade de um sistema ou de um recurso do sistema ser acessível e utilizável sob demanda por uma entidade autorizada, de acordo com especificações de desempenho -- isto é, o sistema estará disponível se oferecer os serviços de acordo com seu projeto sempre que usuários legítimos os solicitarem. Em geral, o grau de disponibilidade de um sistema é medido pelo seu número de horas em funcionamento pleno em relação a um espaço de tempo pré-definido. É comum a utilização de uma representação que define o grau de disponibilidade de um sistema em noves. Por exemplo, se dizemos que um sistema tem disponibilidade de 4 noves ao ano, isso quer dizer que ele está funcionando de forma plena em 99,99\% do espaço do tempo existente em um ano. Como o ano tem 8760 horas, podemos afirmar que o sistema deve estar disponível, portanto, por 8759,124 horas por ano -- e possivelmente indisponível por aproximadamente 50 minutos por ano.
+
+As características de autenticidade e irretratabilidade, apesar de não fazerem parte da tríade CID, também são desejáveis e têm impacto sobre ela. A grande maioria dos sistemas de informação fazem uso e baseiam grande parte de sua segurança em mecanismos que procuram oferecer autenticidade.
+
+A autenticidade engloba dois conceitos diferentes que se relacionam: a autenticação e a autorização. A autenticação é o ato de confirmar a veracidade de um atributo de elemento de dados ou de uma entidade. É interessante salientar a diferença que existe entre a identificação e a autenticação: a identificação se refere ao ato de declarar ou indicar a identidade de uma pessoa ou coisa, enquanto a autenticação é o processo de realmente confirmar tal identidade. O processo pode envolver a confirmação da identidade através da validação de um documento de identificação, da verificação da validade de um certificado digital, da conferência de uma tupla de nome de usuário e senha, etc. Em outras palavras, a autenticação envolve a validação de pelo menos uma forma de identificação.
+
+A autorização é distinta da autenticação. Enquanto a autenticação é o processo de verificar que "você é quem você diz que é", a autorização é o processo de verificar que "você tem permissão para fazer o que você está tentando fazer". A autorização pressupõe a autenticação. Por exemplo, um cliente que apresenta identificação válida a um caixa de banco está pedindo para ser que o atendente autentique que ele é, de fato, a pessoa a quem pertece o documento de identificação que ele está mostrando. Um cliente cujo pedido de autenticação é aprovado se torna autorizado a acessar suas contas -- mas não as contas de outros clientes. 	Perceba que, se um cliente legítimo tenta acessar a conta de outra pessoa com suas credenciais de identificação, ele será autenticado com sucesso, pois elas são genuínas, mas ele não será autorizado a acessar tal conta, pois sua identificação não foi configurada anteriormente como apta a acessar esta conta, mesmo que seja válida -- ou seja, autêntica.
+Mecanismos comuns de controle de acesso buscam fornecer a combinação de autenticação e autorização.
+
+A irretratabilidade oferece proteção contra a negação por parte de uma entidade envolvida em uma comunicação de ter participado dela. Esta característica impede que o emissor ou o receptor negue uma mensagem transmitida. Assim, quando uma mensagem é enviada, o receptor pode provar que o emissor alegado de fato enviou a mensagem. De modo semelhante, quando uma mensagem é recebida, o emissor pode provar que o receptor aleado de fato recebeu a mensagem. A irretratabilidade é, em geral, oferecida por mecanismos que fornecem provas da integridade e da origem de um dado ou por mecanismos de autenticação cuja genuinidade pode ser afirmada com alto grau de certeza.
+
+\section{Alguns Problemas}
+
+\textit{"O usuário A transmite um arquivo ao usuário B. O arquivo contém informações que devem ser protegidas contra divulgação. O usuário C, que não está autorizado a ler o arquivo, é capaz de monitorar a transmissão e obter uma cópia do arquivo durante sua transmissão."}
+
+No caso deste exemplo, houve claramente uma quebra de confidencialidade. Temos duas entidades, A e B, que têm permissão de acesso à informação contida em um determinado arquivo que é transmitido entre elas através de uma rede. No momento da transmissão, porém, o meio no qual ela acontece está sendo monitorado por C, uma terceira entidade que não tem permissão de acesso ao conteúdo do arquivo em questão. C é capaz de salvar uma cópia do arquivo e tem acesso ao seu conteúdo -- ou seja, o conteúdo é divulgado a uma entidade que não tem permissões de acesso a ele. Em geral, quando existe a divulgação de informações a entidades não-autorizadas a ter acesso a tais informações, podemos afirmar que aconteceu a confidencialidade -- seja ela de uma determinada situação de comunicação através da rede ou de um sistema offline de armazenamento de dados -- foi comprometida.
+
+\textit{"Um gerente de rede D transmite uma mensagem a um computador E sob seu gerenciamento. A mensagem instrui o computador E a atualizar um arquivo de autorização para incluir as identidades de diversos novos usuários que deverão receber acesso a esse computador. Um usuário mal-intencionado F intercepta a mensagem, altera seu conteúdo para incluir ou excluir entradas e, depois, encaminha a mensagem para E, que aceita a mensagem como se tivesse vindo do gerente D e atualiza seu arquivo de autorização conforme solicitado."}
+
+A característica desrespeitada neste exemplo é a integridade. A mensagem criada pela entidade D, o gerente de rede, tinha um determinado conteúdo no momento da criação. Porém, entre o instante do envio e o instante da chegada ao destinatário, o computador E, ela sofreu uma modificação indevida pelo usuário F. Isto vai claramente de encontro com a propriedade da integridade, que procura garantir que quaisquer dados recebidos ou armazenados estão exatamente como foram enviados ou salvos por uma entidade autorizada, pois os dados da mensagem que deveria ser comunicada entre duas entidades legítimas foi alterada por uma entidade que não tinha permissão para tal.
+
+A integridade pode ser quebrada também de formas que não envolvem comunicação em rede. Se, por exemplo, um empregado insatisfeito consegue acesso indevido a uma planilha que armazena valores sensíveis para o funcionamento da empresa e a modifica pessoalmente para causar prejuízo, a integridade daquele recurso foi comprometida.
+
+\textit{"Em vez de interceptar uma mensagem, o usuário F cria sua própria mensagem com as entradas desejadas e transmite essa mensagem para E como se tivesse vindo do gerente D. O computador E aceita a mensagem como vindo do gerente D e atualiza seu arquivo de autorização conforme solicitado."}
+
+Aqui, a falha ocorreu na autenticidade. O usuário mal-intencionado F cria uma mensagem independente e a envia para E, que a aceita como se ela fosse de autoria de D, usuário legítimo. O que acontece nesta situação é a falsificação de identidade de um usuário autorizado. De alguma forma, F consegue forjar o documento de identificação utilizado por D para provar sua identidade e o procedimento de conferência utilizado por E para verificar tais credenciais na mensagem recebida.
+
+Casos mais comuns de falha na autenticidade incluem brincadeiras feitas com usuários que esquecem suas contas em serviços da Internet abertas em computadores públicos ou deixam seus computadores pessoais desbloqueados e acabam tendo mensagens enviadas por terceiros em seu nome.
+
+\textit{"Um funcionário é demitido de uma empresa e o gerente de pessoal envia uma mensagem a um sistema servidor para invalidar sua conta. O funcionário é capaz de interceptar a mensagem e adiá-la pelo tempo necessário para fazer um último acesso ao servidor e obter informações confidenciais. A mensagem é então encaminhada e a ação tomada -- isto é, a conta do funcionário é invalidada."}
+
+Mais uma vez, temos aqui uma falha na integridade. A mensagem enviada pelo gerente de pessoal chega sem modificações ao destinatário, então o conteúdo dela continua íntegro -- a integridade do fluxo de dados, porém, foi comprometida. Alterações na dinâmica da comunicação entre duas entidades, como retardos na entrega, repetições e remoções de mensagens reais também configuram falhas de integridade. O conteúdo continua íntegro, mas o fluxo da comunicação foi modificado.
+
+Um exemplo que deixa claro o quanto modificações no fluxo de mensagens pode ser perigoso para a segurança de uma comunicação é o poema "De trás pra frente", popular na Internet. Ele pode ser lido normalmente ou invertendo a ordem dos versos, assumindo significados completamente diferentes.
+
+\begin{center}
+\textit{“Não te amo mais.\\
+Estarei mentindo dizendo que \\
+Ainda te quero como sempre quis.\\
+Tenho certeza que\\
+Nada foi em vão.\\
+Sinto dentro de mim que\\
+Você não significa nada.\\
+Não poderia dizer jamais que\\
+Alimento um grande amor.\\
+Sinto cada vez mais que\\
+Já te esqueci!\\
+E jamais usarei a frase\\
+EU TE AMO!\\
+Sinto, mas tenho que dizer a verdade\\
+É tarde demais…”}
+\end{center}
+
+\textit{"Uma mensagem é enviada de um cliente a uma corretora com instruções para diversas transações. Depois disso, os investimentos perdem valor e o cliente nega ter enviado a mensagem."}
+
+A irretratabilidade sofre um ataque neste caso. O cliente envia uma mensagem legítima à corretora e depois tenta culpá-la pelos prejuízos sofridos por sua decisão infeliz em relação a investimentos. A autoria da mensagem enviada, portanto, é negada pelo seu emissor. Aqui temos um problema de irretratabilidade causado pela origem. Em um exemplo mais claro de situações que envolvem garantias de irretratabilidade, pode-se citar o serviço de carta registrada dos Correios. Quando um pacote é despachado nesta modalidade de envio, exige-se que, no momento do recebimento do volume, o destinatário forneça sua assinatura. Desta forma, caso o destinatário resolva posteriormente alegar que não recebeu a encomenda, o documento assinado serve como forma de provar que ele está mentindo. Neste caso, a irretratabilidade se manifesta no lado do destino.
+
+\textit{“Você configura seu cliente de BitTorrent de forma a conseguir acompanhar o progresso de seus downloads a partir de seu dispositivo móvel. Passeando pelo seu quarto, seu gato acaba desconectando o cabo de força do seu computador.”}
+
+No caso, houve uma falha na disponibilidade.
+
+\section{Ataques e Ameaças}
+
+Uma ameaça é um potencial para violação da segurança quando há uma circunstância, capacidade, ação ou evento que pode quebrar a segurança e causar danos. Ou seja, uma ameaça é um possível perigo que pode explorar uma vulnerabilidade.
+
+Um ataque à segurança é derivado de uma ameaça inteligente, ou seja, um ato inteligente que é uma tentativa deliberada de burlar os mecanismos de segurança e violar a política de segurança de um sistema.
+
+Ataques podem ser definidos como passivos ou ativos. Um ataque passivo tenta descobrir ou utilizar informações do sistema, mas não afeta seus recursos. Um ataque ativo tenta alterar os recursos do sistema ou afetar sua operação.
+
+Ataques passivos possuem a natureza de bisbilhotar ou monitorar informações. O objetivo é obter informações que estão sendo transmitidas. Um dos tipos mais comuns de ataque passivo é o de divulgação do conteúdo de uma mensagem, e acontece quando uma ameaça tenta ter acesso a mensagens cujo conteúdo é importante ou confidencial. Caso o ataque ocorra com sucesso, a confidencialidade do sistema e/ou da comunicação claramente será comprometida.
+
+Um segundo tipo de ataque passivo é a análise de tráfego. Suponha que temos uma maneira de disfarçar o conteúdo das mensagens ou de outro tráfego de informações de modo que os adversários, mesmo conseguindo captar a mensagem, não pudessem extrair suas informações – isso poderia ser implementado, por exemplo, com um bom mecanismo de criptografia. Se tivéssemos proteção por criptografia, um adversário ainda poderia conseugir observar o padrão dessas mensagens. O adversário poderia determinar o local e a identidade dos hospedeiros envolvidos na comunicação e observar a frequência e o tamanho das mensagens trocadas, por exemplo. Essa informação poderia ser útil para descobrir a natureza da comunicação que estava ocorrendo.
+
+Chamamos esse tipo de ataque de passivo porque eles não causam nenhuma modificação nos dados e/ou outros recursos. Normalmente, o tráfego de dados e o funcionamento do sistema ocorrem em um padrão aparentemente normal, e nem o emissor nem o receptor ficam cientes de que um terceiro leu as mensagens ou observou o padrão de tráfego delas. Eles são, portanto, difíceis de detectar. Assim, a ênfase em lidar com ataques passivos está na prevenção e não na detecção.	
+
+Ataques ativos envolvem alguma modificação do fluxo de dados e podem ser categorizados em geral como disfarce, repetição, modificação e negação de serviço.
+
+Um disfarce ocorre quando uma entidade finge ser uma entidade diferente. Um ataque de disfarce normalmente inclui uma das outras formas de ataque ativo. Por exemplo, sequências de autenticação podem ser captadas e reproduzidas depois que houver uma sequência de autenticação válida, permitindo assim que uma entidade autorizada com poucos privilégios obtenha outros ao imitar uma entidade que os tenha. Disfarces que ocorrem com sucesso desrespeitam a política de segurança de um sistema em relação às características de autenticidade e irretratabilidade.
+
+A repetição envolve a captura passiva de uma unidade de dados e sua subsequente retransmissão para produzir um efeito não autorizado. Repetições podem causar falhas diretamente na integridade do fluxo de comunicação e indiretamente na autenticidade do sistema.
+
+A modificação simplesmente significa que alguma parte de uma mensagem ou dados armazenado legítimo foi alterada ou que mensagens foram adiadas ou reordenadas para produzir efeitos não autorizados ou indesejados. Por exemplo, uma mensagem significando “Permitir que Marcone Eder tenha acesso a dados confidenciais de nível X” é modificada para “Permitir que Monique Silva tenha acesso a dados confidenciais de nível X”. Modificações obviamente ferem a integridade do sistema.
+
+A negação de serviço impede ou inibe o uso ou gerenciamento normal das instalações de comunicação. Esse ataque pode ter um alvo específico; por exemplo, um entidade pode suprimir todas as mensagens dirigidas a um determinado destino. Outra forma de negação de serviço é a interrupção de uma rede inteira, seja desativando a rede ou sobrecarregando-a com mensagens, a fim de prejudicar seu desempenho. Negações de serviço claramente quebram a característica de disponibilidade.
+
+Ataques ativos apresentam características opostas às dos ataques passivos. Embora os ataques passivos sejam difíceis de detectar, existem medidas para impedir seu sucesso. Por outro lado, é difícil impedir ataques ativos absolutamente, devido à grande variedade de vulnerabilidades físicas, de software e de rede em potencial – é impossível prever todas elas em um modelo de ameaça, por isso a impossibilidade de afirmar a existência de um sistema com segurança inquebrável. Em vez disso, o objetivo é detectar ataques ativos e recuperar-se de qualquer interrupção ou atraso causado por eles.
+
+\subsection{Tipos de Ameaças}
+
+Como mencionado anteriormente, uma ameaça é um potencial para violação da segurança quando há uma circunstância, capacidade, ação ou evento que pode quebrar a segurança e causar danos. Isto é, uma ameaça é basicamente qualquer coisa que pode, de uma forma ou de outra, iniciar um ataque ou causar um acidente que venham a quebrar a segurança de um sistema.
+
+Quando pensamos em ameaças a sistemas computacionais, é fácil lembrar de exemplos como hackers, vírus ou cavalos de tróia. Apesar destes serem exemplos absolutamente razoáveis de ameaças, outras ameaças menos óbvias oferecem tanto – ou até mais – perigo quanto estas.
+
+Hackers, ladrões, vírus, spywares e funcionários insatisfeitos são ameaças comumente apontadas e são conhecidas como ameaças intencionais. Ameaças intencionais são criadas ou acontecem, em geral, com a explícita intenção de causar uma situação de desrespeito à segurança de um sistema. 
+
+Quando alguém cria um vírus que, ao se instalar em um sistema, destrói arquivos importantes para seu funcionamento, tal pessoa tem a clara intenção de quebrar a integridade do sistema em questão. Quando alguém projeta um spyware que observa o uso de sistemas de pagamento online por usuários leigos, tal pessoa tem a clara intenção de quebrar a confidencialidade do sistema.
+
+Dizemos que uma ameaça é intencional quando ela é deliberadamente projetada com o intuito específico de causar uma falha de segurança.
+
+Existem muitas outras ameaças, porém, que não cabem nesta descrição mas que também são bastante perigosas e merecem atenção de qualquer um que deseje implantar um sistema de informação com segurança.
+
+Chamamos de ameaças naturais todo e qualquer fato, fenômeno ou situação decorrente da ação da natureza que pode causar dano aos recursos de um sistema. Bons exemplos de ameaças naturais são enchentes, incêndios, terremotos, maremotos, o aquecimento global, a poluição, o desgaste natural, etc.
+
+Se temos um sistema que utiliza um banco de dados hospedado em uma máquina que pode ser atingida se o prédio onde se encontra sofrer um incêndio, ela está sujeita a uma ameaça natural. Tal fenômeno pode causar uma falha na disponibilidade – se o incêndio fizer com que a comunicação com a máquina se torne impossível – ou na integridade – se a máquina pegar fogo e os dados que armazena forem danificados e/ou destruídos.
+
+Existem ainda ameaças involuntárias, que são aquelas que existem devido à ignorância ou falta de atenção dos usuários do sistema. São causadas, em geral, por erros de desconhecimento no uso dos recursos ou por erros inconscientes que acontecem por falta de treinamento.
+
+Um exemplo muito comum acontece com usuários que se sentem intimidados, por exemplo, pelo uso de caixas eletrônicos. Tais usuários tendem a pedir que terceiros utilizem os artefatos que os autenticam e autorizam nos sistemas dos bancos – em geral, o cartão e a senha – e executem ações em seu nome. Isto quebra claramente a autenticidade do sistema, mas essa falha acontece devido à ignorância do usuário em relação à utilização do sistema e ao desconhecimento das possíveis consequências da ideia de permitir que terceiros operem o sistema com suas credenciais de acesso.
+
+Outras ameaças involuntárias comuns acontecem quando usuários anotam suas senhas de acesso a sistemas em locais inseguros, abandonam suas estações de trabalho sem se desautenticar, desligam máquinas sem observar os procedimentos corretos ou não mantém boas práticas de manutenção.
+
+\subsection{Estudo de Prioridades GUT}
+
+Cada afirmação que faz parte de uma política de segurança diz respeito ao procedimento que deve ser seguido por um usuário legítimo para acessar determinado recurso de um sistema. Tal afirmação representa um requisito que deve ser assegurado por um mecanismo de segurança. Não é difícil encontrarmos uma política de segurança que inclua uma afirmação que diz 'Apenas usuários autênticos devem ter acesso aos recursos do sistema', por exemplo. Esta afirmação compõe um requisito de autenticação da característica de autenticidade do sistema. O mecanismo de segurança utilizado para assegurar que a afirmação é – e se mantém – verdadeira pode ser um formulário de nome de usuário e senha que confere informações em um banco de dados, um sistema de identificação biométrica a partir da leitura da impressão digital do usuário ou uma conferência de documentos oficiais por um atendente, entre outros.
+
+O estudo de prioridades GUT tem como objetivo analisar cada afirmação de uma política de segurança em relação ao impacto que uma falha de segurança que desrespeita tal afirmação causará no funcionamento do sistema. A análise resulta em uma classificação de prioridade para os requisitos de segurança, o que deve ajudar a nortear a atenção dos desenvolvedores e gestores de um sistema.
+
+Cada requisito da política de segurança deve ser pontuado em relação a três aspectos do impacto de uma possível falha: o quão grave é uma falha em tal requisito, com que urgência a correção dela deve ser tratada e a escalabilidade do problema com o passar do tempo, isto é, que ponto o problema tende a atingir caso não seja corrigido imediatamente. Cada aspecto deve ser pontuado de 1 a 5 – quanto mais grave, urgente ou escalável a falha for, maior sua pontuação na análise –, e as pontuações são multiplicadas para gerar um resultado final.
+
+\begin{table}
+\caption{Pequeno vocabulário de design de livros\label{vocabulario-texto}}
+\ABNTEXfontereduzida
+\begin{tabular}{p{4cm}p{4cm}p{4cm}}
+\toprule
+\textit{Gravidade} & \textit{Urgência} & \textit{Tendência}\\
+\midrule
+\ABNTEXfontereduzida
+1 - sem gravidade & 1 - sem pressa & 1 - não vai se agravar.\\
+2 - sem gravidade & 2 - sem pressa & 2 - não vai se agravar.\\
+3 - sem gravidade & 3 - sem pressa & 3 - não vai se agravar.\\
+4 - sem gravidade & 4 - sem pressa & 4 - não vai se agravar.\\
+5 - sem gravidade & 5 - sem pressa & 5 - não vai se agravar.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Mecanismos de Segurança}
+
+Mecanismos de segurança, que são definidos com base nos requisitos declarados na política de segurança do sistema com base nas ameaças delineadas no modelo de ameaça, podem ser divididos em três tipos: corretivos, detectáveis ou preventivos.
+
+Mecanismos detectáveis servem para detectar (!) eventos não desejáveis que já ocorreram. São muito utilizados para verificar falhas na autenticidade e na integridade de sistemas. Suponha, por exemplo, que um sistema utiliza uma conexão sem fio para transmitir dados entre duas entidades que estão separadas a uma longa distância. Conexões sem fio são especialmente suscetíveis a ruídos, que podem causar índices inaceitáveis de perda de dados. Para garantir o funcionamento correto do sistema, é bastante razoável exigir que os dados transmitidos através de uma comunicação do tipo sejam conferidos em relação a sua integridade após o recebimento pelo destinatário. Tal requisito poderia ser representado na política de segurança do sistema com uma afirmação como 'Dados transmitidos entre estações de trabalho devem manter níveis de pelo menos 95\% de integridade ou devem ser descartados'. Para assegurar que esse requisito seja atendido, podemos implementar um mecanismo de segurança detectável que nos informe sobre a integridade de um recurso de dados – como um código de checksum ou um algoritmo de hash. Se uma mensagem recebida falha na verificação de integridade, ela é descartada e deverá ser reenviada até que atinja o destinatário com índice de perdas abaixo do limiar aceitável expresso no requisito.
+
+Mecanismos corretivos são utilizados para controlar o impacto de uma falha que ocorreu e tentar evitar que ela se repita. Se levamos em consideração o exemplo do parágrafo anterior, após a detecção de uma falha de integridade na transmissão de dados em rede em um sistema, um mecanismo corretivo poderia ser utilizado para remediar a situação – como algum algoritmo de reconstrução de pacotes ou um protocolo de reenvio.
+
+Suponha, por exemplo, que o sistema de um grande site de e-commerce utiliza um banco de dados X que guarda informações imprescindíveis para seu funcionamento. Se o acesso ao banco falhar, o site pode sofrer graves prejuízos – vai ficar sem vender por um período de tempo. Tal situação configuraria, naturalmente, uma falha de disponibilidade no sistema. Sua política de segurança provavelmente incluirá algo do tipo 'O acesso ao banco de dados X deve ter grau de disponibilidade de, no mínimo, 6 noves'. Um mecanismo corretivo como a criação de um espelho alternativo do banco ao qual o acesso seria redirecionado no caso da detecção de inacessibilidade à fonte primária, por exemplo, seria uma opção de mecanismo de segurança corretivo para garantir este requisito. Isto é, no caso de impossibilidade de acesso ao banco – a disponibilidade falhou! –, para corrigir a falha, reestabelecendo a disponibilidade das informações necessárias ao funcionamento, poderíamos utilizar um mecanismo desse tipo.
+
+Mecanismos preventivos, como o nome já sugere, existem para tentar evitar que quebras de segurança aconteçam. É o caso, por exemplo, do uso de técnicas de criptografia sobre dados que são transmitidos em rede. A política de segurança de um sistema que faz uso deste tipo de técnica provavelmente conterá alguma afirmação do tipo 'Apenas usuários autenticados devem ter acesso ao conteúdo do banco de dados' ou algo muito próximo. Caso não haja comunicação de dados através da rede, um mecanismo preventivo que garanta a autenticidade – com autenticação e autorização – no uso do sistema será o suficiente também para garantir a confidencialidade.
+
+Se houver porém, a possibilidade de transmissão de dados em rede, será necessário proteger os dados também durante a comunicação, pois, se o meio de transmissão for observado por um adversário, dados desprotegidos poderão ser lidos, o que ferirá nosso requisito de confidencialidade. Falhas de confidencialidade não podem ser corrigidas: depois que uma informação confidencial foi lida por uma entidade não-autorizada, ela não pode ser “deslida” – isto é, a falha não poderá ser corrigida. A não ser que haja modificação no conteúdo, também não existe como detectar que a falha aconteceu. É necessário, portanto, que mecanismos de segurança sejam implementados não para corrigi-la ou detecta-la, mas sim para evitar que ela aconteça – previni-la.
+
+Em geral, mecanismos preventivos procuram garantir os requisitos relacionados à confidencialidade e à irretratabilidade, mas também pode-se implementar diversos mecanismos preventivos para assegurar integridade física – como em casos de estratégias implementadas para evitar que fenômenos naturais atinjam recursos importantes.
+
+\chapter{Confidencialidade}
+
+A criptografia tem uma história longa e fascinante que começou a milhares de anos atrás. Até décadas recentes, o que existia era o que é conhecido atualmente como criptografia clássica – o uso de métodos de encriptação com caneta e papel ou talvez algumas ferramentas mecânicas. No início do século 20, a invenção de complexas máquinas mecânicas e eletromecânicas trouxe maior sofisticação e eficiência à técnica; a subsequente introdução da eletrônica e da computação permitiu a criação de esquemas de complexidade ainda maior – completamente inadequados para uma aplicação com caneta e papel.
+
+A revisão não-técnica mais completa do assunto é o livro The Codebreakers de David Kahn, que foi lançado em 1967 e conta a história da criptografia desde seu início – no Antigo Egito a 4000 anos atrás – até a época da publicação, onde teve, já no século 20, um papel crucial no resultado de ambas as guerras mundiais. O livro foi finalizado em 1963 e cobre os aspectos da história que foram mais significativos para o desenvolvimento da disciplina até a época. Os usuários da arte eram, predominantemente, militares, diplomatas e o governo em geral. A criptografia era usada como uma ferramenta para proteger segredos e estratégias nacionais.
+
+A proliferação de computadores e sistemas de informação nos anos 60 trouxe com ela a necessidade do setor privado de proteger informação em formato digital e fornecer serviços de segurança. Começando com o trabalho de Feistel na IBM no início dos anos 70 e culminando com a adoção pelo serviço americano de informação, o algoritmo DES, ou Data Encryption Standard, é o mecanismo criptográfico mais conhecido da história. Ele continua sendo utilizado para fornecer segurança em transações financeiras por muitas instituições no mundo inteiro.
+
+Um dos usos mais antigos conhecidos de um esquema de criptografia foi usado por Júlio César durante o Império Romano. Conhecido como 'Cifra de César', o esquema consistia na substituição de cada letra de uma mensagem pela que vem três posições adiante no alfabeto. Por exemplo…
+
+\begin{table}
+\caption{Pequeno vocabulário de design de livros\label{vocabulario-texto}}
+\ABNTEXfontereduzida
+\begin{tabular}{p{1cm}p{6cm}}
+claro & te encontro na aula de auditoria e seguranca\\
+cifrado & wh hqfrqwur qd dxod gh dxglwruld h vhjxudqfd\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Se atribuirmos um valor numérico a cada letra, tal que a = 0, b = 1, c = 3, ..., z = 25, podemos exprimir o algoritmo da forma a seguir. Para cada letra em texto legível p, substitua-a pela letra de texto criptografado C seguindo a fórmula C = E ( 3, p ) = ( p + 3 ) mod 26. O deslocamento pode ser de qualquer magnitude, de modo que o algoritmo geral de César é C = E ( k, p ) = ( p + k ) mod 26 onde k assume um valor no intervalo de 1 a 25. O algoritmo para revelação é simplesmente p = D ( k, C ) = ( C - k ) mod 26.
+
+\section{Segurança da Informação e Criptografia}
+
+Para iniciar o estudo da criptografia, é necessário compreender algumas questões relacionadas à segurança da informação em geral. A segurança da informação se manifesta de muitas formas de acordo com a situação e suas exigências. Independentemente das partes envolvidas, de uma forma ou de outra, todas as partes de uma transação devem ter segurança de que certos objetivos associados à segurança da informação foram alcançados e mantidos.
+
+Através dos séculos, um conjunto elaborado de protocolos e mecanismos foi criado para lidar com problemas de segurança de informação quando ela é representada em documentos físicos. Muitas vezes, os objetivos da segurança da informação não podem ser obtidos apenas através de protocolos e algoritmos matemáticos, e exigem técnicas procedurais e leis para atingir o resultado desejado. Por exemplo, a privacidade de correspondências físicas é fornecida pelo uso de envelopes fechados que são entregues por um serviço de postagem confiável. A segurança física do envelope, porém, por motivos de praticidade, é limitada, então leis existem para que abrir correspondência sem autorização seja considerado crime. Às vezes a segurança é alcançada não através da informação em si, mas através do artefato físico onde é guardada. Por exemplo, a impressão de dinheiro exige tintas e material especiais para evitar a falsificação.
+
+Conceitualmente, a forma como a informação é guardada não mudou dramaticamente. Ela era normalmente guardada e transmitida em papel, e agora maior parte é representada de forma digital e transmitida através de sistemas de telecomunicações. O que mudou dramaticamente foi a nossa habilidade de copiar e alterar informação. É simples criar milhares de cópias de uma informação armazenada eletronicamente e cada uma é indistinguível de outra. Com papel, isso é muito mais difícil. O que se tornou necessário então foi uma forma de garantir a segurança da informação que seja independente da mídia física onde ela é gravada ou uma forma de representá-la que possibilite que os objetivos de segurança da informação dependam apenas da informação em si.
+
+Uma das ferramentas fundamentais usadas na segurança da informação é a assinatura. Ela é o elemento principal usado em vários serviços, como a irretratabilidade, autenticação de origem de dados, identificação, etc. Depois de aprender a escrever, um indivíduo é ensinado a produzir uma assinatura escrita à mão para propósitos de identificação. A partir da idade em que pode passar a assinar contratos, a assinatura se torna parte integral da identidade de uma pessoa. Essa assinatura deve ser única e individual e servir como uma forma de identificar, autorizar e validar. Com informação em formato eletrônico, o conceito de uma assinatura precisa ser recriado; não pode ser simplesmente ser algo exclusivo ao criador e independente da informação assinada, pois a replicação seria tão simples que adicionar uma assinatura a um documento não assinado pelo originador dela é quase trivial.
+
+Estratégias análogas aos "protocolos de papel" são necessárias. Espera-se que esses novos protocolos eletrônicos sejam pelo menos tão bons quanto os que substituem. Obter segurança da informação em meios eletrônicos exige um grande conjunto de habilidades técnicas e legais, mas não há como garantir que todos os objetivos considerados necessários para a segurança da informação podem ser adequadamente obtidos. Muitas das técnicas de obtenção desses objetivos fazem uso da criptografia.
+
+\begin{itemize}
+\item[Definição] A criptografia é o estudo de técnicas matemáticas relacionadas a características da segurança da informação como confidencialidade, integridade, autenticação de entidades e autenticação da origem de dados.
+\end{itemize}
+
+\section{O que é uma cifra?}
+
+Todo e qualquer dado é representado utilizando-se de um alfabeto A finito. Por exemplo, o alfabeto A do sistema binário é A = {0, 1}. Já o alfabeto A da língua portuguesa é A = {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z}.
+
+Qualquer dado representado utilizando sequências de símbolos que fazem parte de um alfabeto de definição é o que chamamos de \textbf{texto claro}. O conjunto M de todos as mensagens de texto claro que podem ser definidas com símbolos de um determinado alfabeto de definição é chamado de \textbf{espaço de mensagens}.
+
+Qualquer dado gerado com a aplicação de algum tipo de transformação sobre um elemento de um espaço de mensagens M é chamado de \textbf{texto cifrado}. O conjunto C de todas as possíveis mensagens de texto cifrado gerados a partir de um determinado espaço de mensagens M é chamado de \textbf{espaço de texto cifrado}.
+
+Um conjunto K de valores no qual cada elemento é chamado de \textbf{chave} é chamado de \textbf{espaço de chaves}. Diz-se que cada elemento $e \in K$ determina uma bijeção entre um espaço de mensagens M e um espaço de texto cifrado C. Cada bijeção é chamada de \textbf{função de encriptação}. Diz-se que cada elemento $d \in K$ determina uma bijeção entre um espaço de texto cifrado C e um espaço de mensagens M. Cada bijeção é chamada de \textbf{função de decriptação}.
+
+O processo de aplicar uma transformação/função de encriptação definida por um elemento $e \in K$ sobre um elemento $m \in K$ com a geração consequente de um elemento único $c \in C$ é chamado de \textbf{encriptação} de m.
+
+O processo de aplicar uma transformação/função de decriptação definida por um elemento $d \in K$ sobre um elemento $c \in C$ com a geração consequente de um elemento únicoé chamado de decriptação de c.
 
 % ------------------------------------------------------------
 \chapter{Exemplos de tabela}
