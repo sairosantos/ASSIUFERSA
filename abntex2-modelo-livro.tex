@@ -649,7 +649,153 @@ Um conjunto K de valores no qual cada elemento é chamado de \textbf{chave} é c
 
 O processo de aplicar uma transformação/função de encriptação definida por um elemento $e \in K$ sobre um elemento $m \in K$ com a geração consequente de um elemento único $c \in C$ é chamado de \textbf{encriptação} de m.
 
-O processo de aplicar uma transformação/função de decriptação definida por um elemento $d \in K$ sobre um elemento $c \in C$ com a geração consequente de um elemento únicoé chamado de decriptação de c.
+O processo de aplicar uma transformação/função de decriptação definida por um elemento $d \in K$ sobre um elemento $c \in C$ com a geração consequente de um elemento único $m \in M$ é chamado de decriptação de c.
+
+Um esquema de encriptação consiste em um conjunto E de funções de encriptação e um conjunto D correspondente de funções de decriptação tal que para cada elemento $e \in K$, há um elemento $d \in K \| E(e) = D(d)^{-1}, D(d) = E(e)^{-1}$ para qualquer $m \in M$.
+
+Um esquema de decriptação consiste em um conjunto D de funções de decriptação e um conjunto E correspondente de funções de encriptação tal que para cada elemento $d \in K$, há um elemento $e \in K$, há um elemento $e \in K \| D(d) = E(e)^{-1}, E(e) = D(d)^{-1}$ para qualquer $c \in C$.
+
+Para construir uma cifra ou esquema criptográfico, portanto, precisamos definir um espaço de mensagens M, um espaço de texto cifrado C, um espaço de chaves K, um esquema de encriptação $E(m, e) \| m \in M, e \in K$ e um esquema de decriptação $D(c, d) \| c \in C, d \in K$.
+
+\section{Como conseguimos confidencialidade?}
+
+Suponhamos que dois usuários, Alice e Beto, precisam se comunicar em rede com confidencialidade e escolhem utilizar um esquema criptográfico para alcançar tal objetivo. A comunicação segura aconteceria da seguinte forma:
+
+\begin{itemize}[noitemsep]
+\item Um par de chaves $\{ e, d \}$ deve ser escolhido \textbf{secretamente} pelos dois;
+\item Posteriormente, se Alice resolve enviar uma mensagem m confidencialmente para Beto, ela deve computar $c = E(m, e)$ e transmiti-lo para Beto;
+\item Ao receber c, Beto computa $D(c, d) = m$ e recupera a mensagem original m.
+\end{itemize}
+
+Digamos que temos um espaço de mensagens M de tamanho 3 – isto é, temos três mensagens diferentes que podem ser cifradas. Nosso espaço de textos cifrados C, portanto, também terá tamanho 3. Isto será verdade para quaisquer espaços de mensagens e espaços de textos cifrados. Quantas bijeções podem existir entre os dois conjuntos? A resposta para essa pergunta sempre será n!, onde n é o número de elementos de M – ou C, já que eles sempre terão tamanhos iguais. Portanto entre nossos M e C há 3! bijeções possíveis – 6.
+
+Como mencionado anteriormente, cada bijeção entre M e C é determinada por um elemento do espaço de chaves K. Portanto, o tamanho de K, isto é, o número de chaves possíveis no esquema criptográfico, sempre será igual a n!.
+
+\begin{itemize}[noitemsep]
+\item $M = \{ m_1, m_2, m_3 \}$
+\item $C = \{ c_1, c_2, c_3 \}$
+\item $K = \{ k_1, k_2, k_3, k_4, k_5, k_6 \}$
+\end{itemize}
+
+A partir deste ponto, é simples definir o conjunto E de funções de encriptação:
+
+\begin{itemize}[noitemsep]
+\item $E = \{ E_1, E_2, E_3, E_4, E_5, E_6 \}$
+\item $E_1 (m, k_1) = \{ m_1 \to c_3, m_2 \to c_1, m_3 \to c_2 \}$
+\item $E_2 (m, k_2) = \{ m_1 \to c_1, m_2 \to c_3, m_3 \to c_2 \}$
+\item $E_3 (m, k_2) = \{ m_1 \to c_1, m_2 \to c_2, m_3 \to c_3 \}$
+\item $E_4 (m, k_2) = \{ m_1 \to c_3, m_2 \to c_2, m_3 \to c_1 \}$
+\item $E_5 (m, k_2) = \{ m_1 \to c_2, m_2 \to c_1, m_3 \to c_3 \}$
+\item $E_6 (m, k_2) = \{ m_1 \to c_3, m_2 \to c_3, m_3 \to c_1 \}$
+\end{itemize}
+
+O conjunto D de funções de decriptação equivalente será:
+
+\begin{itemize}[noitemsep]
+\item $D = \{ D_1, D_2, D_3, D_4, D_5, D_6 \}$
+\item $D_1 (c, k_1) = \{ c_1 \to m_1, c_2 \to m_3, c_3 \to m_2 \}$
+\item $D_2 (c, k_1) = \{ c_1 \to m_2, c_2 \to m_3, c_3 \to m_1 \}$
+\item $D_3 (c, k_1) = \{ c_1 \to m_3, c_2 \to m_2, c_3 \to m_1 \}$
+\item $D_4 (c, k_1) = \{ c_1 \to m_1, c_2 \to m_2, c_3 \to m_3 \}$
+\item $D_5 (c, k_1) = \{ c_1 \to m_3, c_2 \to m_1, c_3 \to m_2 \}$
+\item $D_6 (c, k_1) = \{ c_1 \to m_2, c_2 \to m_1, c_3 \to m_3 \}$
+\end{itemize}
+
+É necessário atentar ao fato que o conjunto de funções de encriptação obtido com a chave $k_n$ não é necessariamente equivalente ao conjunto de funções de decriptação obtido com a chave $k_n$ – é por isso que, no momento da definição de chaves para comunicação com confidencialidade, definimos duas chaves  e não apenas uma: uma será específica para a encriptação e a outra será específica para a decriptação. Obviamente, é necessário que as chaves selecionadas sejam equivalentes, ou a decriptação não será possível.
+
+É fácil perceber, no exemplo definido acima, que $E_1$ é equivalente a $D_2$, $E_2$ é equivalente a $D_1$, $E_3$ é equivalente a $D_4$, $E_4$ é equivalente a $D_3$, $E_5$ é equivalente a $D_6$, E $E_6$ é equivalente a $D_5$. Portanto, se consideramos que $\{ e, d \}$ é um par válido – ou equivalente – de chaves, respectivamente, de encriptação e decriptação, pares válidos serão $\{ k_1, k_2 \}$, $\{ k_2, k_1 \}$, $\{ k_3, k_4 \}$, $\{ k_4, k_3 \}$, $\{ k_5, k_6 \}$, $\{ k_6, k_5 \}$.
+
+Se, levando em consideração o exemplo da comunicação entre Alice e Beto, assumirmos que eles estão se comunicando com confidencialidade utilizando o sistema criptográfico definido acima, é simples simular:
+
+\begin{itemize}[noitemsep]
+\item Alice e Beto selecionam um par de chaves: $\{ k_4, k_3 \}$;
+\item Alice deseja enviar a mensagem $m_2$ para Beto com confidencialidade e, para isso, computa $E(m_2, k_4) = c_2$ – e $c_2$ é enviada para Beto;
+\item Beto recebe $c_2$ e computa $D(c_2, k_3)$, que resulta em $m_2$, o texto original que Alice desejava comunicar.
+\end{itemize}
+
+\section{Algoritmos de Criptografia}
+No exemplo trabalhado na seção anterior, os conjuntos M, C e – consequentemente – K eram pequenos, então foi possível definir diretamente todas as bijeções que compunham o esquema criptográfico fictício em questão. Como eram apenas 3 elementos no espaço de mensagens e no espaço de textos cifrados, haviam apenas 6 bijeções possíveis, então pudemos explicitar os mapeamentos entre os conjuntos para cada chave.
+
+Na prática, porém, os conjuntos M e C são astronomicamente grandes, e o conjunto K – consequentemente – é maior ainda. Definir cada mapeamento possível entre M e C grandes como fizemos para M e C pequenos seria impraticável. Se, por exemplo, tivéssemos um esquema criptográfico usado para encriptar textos em inglês observando um caractere de texto de cada vez, nossos conjuntos M e C teriam 26 elementos. O espaço de chaves K correspondente teria 26! elementos – isto é $4,032914611 x 10^26$ elementos. É absolutamente impossível definir cada um desses mapeamentos explicitamente, então os espaços de chaves são, em geral, reduzidos através de técnicas que possibilitam a especificação de um texto cifrado com base no conteúdo do texto claro e da chave – os \textbf{algoritmos de criptografia}.
+
+A cifra de César, por exemplo, trabalha exatamente com este caso. Como cada letra é considerada individualmente e substituída por outra do mesmo alfabeto, os conjuntos M e C são iguais – isto é, cada um é composto pelas 26 letras do alfabeto. Se fôssemos considerar todas as possíveis bijeções entre os dois conjuntos, teríamos um espaço de chaves K de $4,032914611 x 10^26$ chaves. Ao definir, porém, que limitaremos as substituições às relações $C = E(k, p) = (p + k) mod 26$ para encriptação e $p = D(k, c) = (C – k) mod 26$ para decriptação, reduzimos nosso espaço de chaves K – o número de diferentes bijeções possíveis entre M e C – a apenas 25 – afinal, qualquer deslocamento maior que 25 resultará em uma bijeção já alcançada por outro deslocamento menor. O conjunto das tais 25 bijeções definido pelas limitações do algoritmo é sem dúvida um subconjunto das $4,032914611 x 10^26$ bijeções possíveis mas, por motivos de praticidade, somente ele é considerado na aplicação do esquema criptográfico.
+
+Se, por exemplo, temos uma aplicação da Cifra de César com a chave 6, nossas funções E e D de encriptação e decriptação serão $E = \{ a \to g, b \to h, c \to i, d \to j, e \to k, f \to l, g \to m, h \to n, i \to o, ... , x \to d, y \to e, z \to f \}$, $D = \{ a \to u, ..., h \to b, i \to c, j \to d, k \to e, l \to f, m \to g, n \to h, o \to i, ..., z \to t \}$. É fácil perceber que, no caso específico da Cifra de César definida pelas relações acima, a mesma chave é utilizada tanto no processo de encriptação quanto no processo de decriptação. Como vimos anteriormente, isso nem sempre é verdade, mas muitas cifras funcionam com relações que têm este comportamento. Similarmente, outras utilizam chaves diferentes, mas têm relações que tornam computacionalmente simples o processo de descobrir uma chave de encriptação (ou decriptação) a partir de sua chave de decriptação (ou encriptação) equivalente. A esta classe de cifras damos o nome de cifras simétricas.
+
+\section{Cifras Simétricas}
+
+Definimos anteriormente que um esquema criptográfico é formado por 5 conjuntos: o espaço de mensagens M, o espaço de textos cifrados C, o espaço de chaves K, o conjunto E de funções de encriptação e o conjunto D de funções de decriptação. Vimos também que, para que duas entidades possam se comunicar com confidencialidade utilizando um determinado esquema criptográfico, elas devem escolher duas chaves pertencentes a K de forma que as funções resultantes da aplicação delas sobre os conjuntos M e C resultem em elementos mutuamente associados.
+
+Caso o conjunto K seja muito grande – uma ocorrência inevitável, pois qualquer M de tamanho razoável exigirá um conjunto K de dimensões astronômicas –, definimos relações entre M e C que reduzem o número de elementos efetivamente utilizáveis de K. Isto é, reduzimos o número de chaves, funções de encriptação e funções de decriptação possíveis. Essa necessidade traz uma possibilidade interessante: a de definirmos relações de forma que a mesma chave – o mesmo elemento de K – possa ser usado tanto para a função de encriptação quanto para a função de decriptação, ou que a chave de encriptação seja facilmente deduzida a partir da chave de decriptação e vice-versa. Cifras que utilizam esse tipo de relação são comumente chamadas de cifras simétricas.
+
+Considerem um esquema criptográfico que consiste dos conjuntos de funções de encriptação e decriptação $E_e \| e \in K$ e $D_d \| d \in K$, respectivamente, onde K é o espaço de chaves. Um esquema criptográfico é considerado simétrico se, para cada par de chaves $\{ e, d \}$ para encriptação/decriptação, for computacionalmente fácil determinar d sabendo e, e determinar e a partir de d. Como $ e = d$ na maioria dos esquemas criptográficos simétricos, o termo cifra simétrica se torna apropriado.
+
+Por exemplo, assuma $A = \{A, B, C, D, ..., X, Y, Z \}$, o alfabeto da língua portuguesa. Assuma que M e C são os conjuntos de todas as possíveis combinações de tamanho 5 sobre A. A chave e é uma permutação de A. Para encriptar, uma mensagem é dividida em strings de tamanho 5 – com preenchimento, se necesssário – e a permutação e é aplicada a uma letra de cada vez. Para decriptar, a permutação inversa $d = e_{-1}$ é aplicada a cada letra do texto cifrado. Por exemplo, suponhamos que a chave e escolhida é a permutação $A \to Q, B \to W, C \to E, D \to R, E \to T, F \to Y, G \to U, H \to I, I \to O, J \to P, K \to L, L \to K, M \to J, N \to H, O \to G, P \to F, Q \to D, R \to S, S \to A, T \to Z, U \to X, V \to C, W \to V, X \to B, Y \to N, Z \to M$. Uma mensagem $m$ = ESSAC IFRAN AOENA DASEG URAAA seria encriptada para $c = E_e (m) =$ TAAQE OYSQH RQATU XSQQQ.
+
+Em uma comunicação com confidencialidade entre duas entidades usanto um esquema do tipo,  assume-se que ambas conhecem o conjunto de funções de encriptação/decriptação – isto é, ambas conhecem o esquema criptográfico. Na aula anterior, definimos que, em uma comunicação confidencial, o par $\{ e, d \}$ de chaves deveria ser escolhido secretamente pelas partes. Para manter a confidencialidade, seria necessário e suficiente que d – a chave de decriptação – se mantivesse secreta. Porém, em uma cifra simétrica, e também deve se manter secreta, pois d pode ser deduzida a partir dela.
+
+Há duas classes de esquemas criptográficos simétricos que são comumente distintas: \textbf{cifras de bloco} e \textbf{cifras de fluxo}.
+
+Uma \textbf{cifra de bloco} é um esquema de encriptação que divide as mensagens em texto claro em blocos de tamanho fixo sobre um alfabeto A e encripta um bloco de cada vez. A grande maioria das técnicas mais conhecidas de criptografia simétrica são cifras de bloco. Duas importantes classes de cifras de bloco são as \textbf{cifras de substituição} e as \textbf{cifras de transposição}. \textbf{Cifras de produto} combinam as duas.
+
+\subsection{Cifras de substituição monoalfabética}
+
+Cifras de substituição são cifras de bloco que substituem símbolos (ou grupos de símbolos) por outros símbolos ou grupos de símbolos.
+
+Considere que A é um alfabeto de q símbolos e M é o conjunto de todas as strings de tamanho t sobre A. Considere que K é o conjunto de todas as permutações possíveis sobre o conjunto A. Defina para cada $e \in K$ uma transformação $E_e$ como $E_e (m) = (e(m_1 )e(m_2 ) \ldots e(m_t)) = (c_1 c_2 \ldots c_t ) = c$, onde $m = (m_1 m_2 \ldots m_t) \in M$. Em outras palavras, para cada símbolo em uma tupla de tamanho t, substitua-o por outro símbolo de A de acordo com uma permutação fixa e. Para decriptar $c = (c_1 c_2 \ldots c_t)$ , compute a permutação inversa $d = e^{-1}$ e $D_d (c) = (d(c_1)d(c_2 ) \ldots d(c_t)) = (m_1 m_2 \ldots m_t) = m$.
+
+Nestes casos, dizemos que temos uma cifra de substituição simples ou uma \textbf{cifra de substituição monoalfabética}.
+
+O número de cifras de substituição monoalfabéticas distintas é $q!$ e é independente do tamanho do bloco da cifra. O exemplo da seção anterior é uma cifra de substituição monoalfabética com bloco de tamanho 5.
+
+\subsection{Cifras de substituição homofônica}
+
+Para cada símbolo $a \in A$, associe um conjunto H(a) de strings de t símbolos, com a restrição que os conjuntos $H(a) \| a \in A$, sejam mutuamente exclusivos. Uma cifra de substituição homofônica substitui cada símbolo $a$ em um bloco de mensagem de texto claro com uma string escolhida aleatoriamente de H(a). Para decriptar uma string c de t símbolos, deve-se determinar um $a \in A$ tal que $c \in H(a)$. A chave para decriptar a cifra consiste nos conjuntos H(a).
+
+Considere que $A = \{ a, b, \}$, $H(a) = \{ 00, 01 \}$, e $H(b) = \{ 01, 11 \}$. O bloco de mensagem em texto claro $ab$ encripta para uma das seguintes: 0001, 0011, 1001, 1011. Observe que o co-domínio para a função de encriptação (pra mensagens de tamanho dois) consiste nos seguintes conjuntos disjuntos de strings de tamanho quatro.
+
+\begin{itemize}[noitemsep]
+\item $aa \to \{ 0000, 0010, 1000, 1010 \}$
+\item $ab \to \{ 0001, 0011, 1001, 1011 \}$
+\item $ba \to \{ 0100, 0110, 1100, 1110 \}$
+\item $bb \to \{ 0101, 0111, 1101, 1111 \}$
+\end{itemize}
+
+Qualquer string de 4 bits identifica um elemento do co-domínio e, portanto, uma mensagem de texto claro.
+
+\subsection{Cifras de substituição polialfabética}
+
+Uma cifra de substituição polialfabética é uma cifra de bloco com tamanho de bloco t sobre um alfabeto A, considerando as seguintes propriedades:
+
+\begin{itemize}[noitemsep]
+\item (i) o espaço de chaves K consiste de todos os conjuntos ordenados de t permutações, onde cada permutação $p_i$ é definida no conjunto A;
+\item (ii) a encriptação da mensagem $m = (m_1 m_2 \ldots m_t)$ com a chave $e = (p_1, p_2, \ldots,  p_t)$ é dada por $E_e (m) = (p_1 (m_1)p_2 (m_2) \ldots p_t (m_t))$; e
+\item (iii) a chave de decriptação associada a $e = (p_1, p_2, …, p_t)$ é $d = (p_1^{-1}, p_2^{-1}, \ldots,  p_t^{-1})$.
+\end{itemize}
+
+Defina $A = \{A, B, C, D, \ldots, X, Y, Z\}$ e $t = 3$. Escolha $e = (p_1, p_2, p_3)$ onde $p_1$ mapeia cada letra para a letra a três posições à direita no alfabeto, $p_2$ mapeia cada letra para a letra a sete posições à direita, e $p_3$ dez posições à direita. Se $m$ = ESS ACI FRA NAO ENA DAS EGU RAA, então $c$ = HZC DJS IYK QHY HUK GHC HNE UHK.
+
+\subsection{Cifras de transposição}
+
+Outra classe de cifras simétricas é a cifra de transposição, que simplesmente permuta os símbolos em um bloco.
+
+Considerem um esquema de encriptação de chave simétrica com bloco de tamanho t. Assuma que K é o conjunto de todas as permutações no conjunto $\{1, 2, 3, \ldots, t\}$. Para cada $e \in K$, defina a função de encriptação $E_e (m) = (m_e(1) m_e(2) \ldots m_e(t))$ onde $m = (m_1 m_2 \ldots m_t) \in M$, é o espaço de mensagens. O conjunto de todas as transformações do tipo é chamado de uma cifra de transposição. A chave de decriptação correspondente a e é a permutação inversa $d = e^{-1}$. Para decriptar $c = (c_1 c_2 \ldots c_t)$, deve-se computar $D_d(c) = (c_d(1) c_d(2) \ldots c_d(t))$.
+
+Por exemplo, uma cifra de transposição comum e bem simples é a técnica rail fence. Nela, o texto claro é escrito de cima para baixo e diagonalmente em nas trilhas de uma cerca imaginária, depois de cima para baixo após chegar à trilha de baixo. Quando atingimos a trilha de cima, a mensagem é escrita de cima para baixo de novo até todo o texto claro ser escrito. A mensagem é então lida em linhas.
+
+Um esquema um pouco mais complexo é escrever a mensagem em uma matriz, linha por linha, e ler a mensagem coluna a coluna, permutando a ordem. Observe o exemplo.
+
+\begin{table}
+\caption{Pequeno vocabulário de design de livros\label{vocabulario-texto}}
+\ABNTEXfontereduzida
+\begin{tabular}{p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}}
+1 & 2 & 3 & 4 & 5 \\
+M & A & R & C & O \\
+N & E & P & A & U \\
+L & O & W & I & L \\
+L & Y & A & N & E
+\end{tabular}
+\end{table}
 
 % ------------------------------------------------------------
 \chapter{Exemplos de tabela}
@@ -766,3 +912,4 @@ incompatíveis com as customizações promovidas. Consulte
 ~\vfill Este texto foi composto em Utopia, de Robert Slimbach, através do pacote \texttt{fournier}.
 
 \end{document}
+\grid
